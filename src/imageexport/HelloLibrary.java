@@ -1,4 +1,4 @@
-package template.library;
+package imageexport;
 
 
 import processing.core.*;
