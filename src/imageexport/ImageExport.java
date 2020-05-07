@@ -11,7 +11,7 @@ import processing.core.*;
 public class ImageExport {
 	
 	// myParent is a reference to the parent sketch
-	PApplet myParent;
+	PApplet parent;
 	
 	public final static String VERSION = "##library.prettyVersion##";
 	
@@ -20,19 +20,28 @@ public class ImageExport {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the Library.
 	 * 
-	 * @example Hello
-	 * @param theParent the parent PApplet
+	 * @param parent the parent PApplet
 	 */
-	public ImageExport(PApplet theParent) {
-		myParent = theParent;
-		welcome();
+	public ImageExport(PApplet parent) {
+		this.parent = parent;
+		showWelcomeMessage();
+		registerForEvents();
 	}
 	
-	
-	private void welcome() {
-		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
+	/**
+	 * Helper method to print welcome message
+	 */
+	private void showWelcomeMessage() {
+		System.out.println("##library.name## ##library.prettyVersion## is activated");
 	}
 	
+	/**
+	 * Helper method to register events from parents
+	 */
+	private void registerForEvents() {
+		parent.registerMethod("pre", this);
+		parent.registerMethod("post", this);
+	}
 	
 	/**
 	 * return the version of the Library.
@@ -41,6 +50,21 @@ public class ImageExport {
 	 */
 	public static String version() {
 		return VERSION;
+	}
+	
+
+	/**
+	 * Start the capturing before the draw() call
+	 */
+	public void pre() {
+		System.out.println("pre()");
+	}
+
+	/**
+	 * Complete the capturing after the draw() call
+	 */
+	public void post() {
+		System.out.println("post()");
 	}
 }
 
