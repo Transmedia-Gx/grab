@@ -35,7 +35,7 @@ public class ImageExport implements PConstants {
 	private void showWelcomeMessage() {
 		System.out.println("##library.name## ##library.prettyVersion## is activated");
 	}
-	
+
 	/**
 	 * Helper method to register events from parents
 	 */
@@ -43,15 +43,6 @@ public class ImageExport implements PConstants {
 		parent.registerMethod("pre", this);
 		parent.registerMethod("post", this);
 		parent.registerMethod("keyEvent", this);
-	}
-	
-	/**
-	 * return the version of the Library.
-	 * 
-	 * @return String
-	 */
-	public static String version() {
-		return VERSION;
 	}
 	
 	/**
