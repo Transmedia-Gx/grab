@@ -2,6 +2,7 @@ package imageexport;
 
 import processing.core.*;
 import processing.event.KeyEvent;
+import processing.pdf.*;
 
 /**
  * An easy-to-use pdf/jpeg exporter
@@ -16,6 +17,17 @@ public class ImageExport implements PConstants {
 	
 	// default key for jpg export
 	private final static String JPG_KEY = "j";
+
+	// default key for pdf export
+	private final static String PDF_KEY = "p";
+
+	// Keep track of PDF export status
+	private enum PDFExportStatus {
+	    NONE,
+	    WILL_EXPORT,
+	    EXPORTING,
+	}
+	PDFExportStatus pdfExportStatus = PDFExportStatus.NONE;
 	
 	/**
 	 * a Constructor, usually called in the setup() method in your sketch to
@@ -41,7 +53,7 @@ public class ImageExport implements PConstants {
 	 */
 	private void registerForEvents() {
 		parent.registerMethod("pre", this);
-		parent.registerMethod("post", this);
+		parent.registerMethod("draw", this);
 		parent.registerMethod("keyEvent", this);
 	}
 	
@@ -49,12 +61,20 @@ public class ImageExport implements PConstants {
 	 * Start the capturing before the draw() call
 	 */
 	public void pre() {
+		if (pdfExportStatus == PDFExportStatus.WILL_EXPORT) {
+			pdfExportStatus = PDFExportStatus.EXPORTING;
+			startExportingPDF();
+		}
 	}
 
 	/**
 	 * Complete the capturing after the draw() call
 	 */
-	public void post() {
+	public void draw() {
+		if (pdfExportStatus == PDFExportStatus.EXPORTING) {
+			finishExportingPDF();
+			pdfExportStatus = PDFExportStatus.NONE;
+		}
 	}
 	
 	/**
@@ -67,10 +87,33 @@ public class ImageExport implements PConstants {
 			if (lowercaseKey.equals(JPG_KEY)) {
 			    System.out.println("[" + JPG_KEY + "] is typed");
 			    exportJpg();
+			} else if (lowercaseKey.equals(PDF_KEY)) {
+			    System.out.println("[" + PDF_KEY + "] is typed");
+			    if (pdfExportStatus == PDFExportStatus.NONE) {
+			    	pdfExportStatus = PDFExportStatus.WILL_EXPORT;
+			    }
 			}
 		}		
 	}
-	
+
+	/**
+	 * Start exporting a PDF file
+	 */
+	void startExportingPDF() {
+	    String filename = getFileNameForExport("pdf");
+	    parent.beginRecord(PDF, filename);
+	    System.out.println("  --> Saving " + filename);
+	    parent.scale(1.0f / parent.displayDensity());
+	}
+
+	/**
+	 * Finish exporting a PDF file
+	 */
+	void finishExportingPDF() {
+		parent.endRecord();
+	    System.out.println("  --> Done saving the PDF!");
+	}
+
 	/**
 	 * Export a jpg file
 	 */

@@ -1,5 +1,6 @@
-// Tell Processing that my code uses the Image Export library
+// Tell Processing to use the Image Export and PDF library
 import imageexport.*;
+import processing.pdf.*;
 
 // Activate the Image Export library
 // Hit p key for exporting PDF, and j for jpg
