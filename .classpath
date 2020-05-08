@@ -6,7 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/core.jar"/>
-	<classpathentry kind="lib" path="lib/pdf.jar"/>
+	<classpathentry kind="lib" path="/Applications/Processing.app/Contents/Java/core.jar"/>
 	<classpathentry kind="output" path="resources/code"/>
 </classpath>
