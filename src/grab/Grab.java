@@ -3,7 +3,6 @@ package grab;
 import processing.core.*;
 import processing.event.KeyEvent;
 
-
 /**
  * An easy-to-use pdf/jpeg exporter
  */
@@ -94,7 +93,7 @@ public class Grab implements PConstants {
 	 * Event handler for key events
 	 */	
 	public void keyEvent(KeyEvent e) {
-		if (e.getAction() == KeyEvent.PRESS) {
+		if (this.mode == Mode.KEYBOARD && e.getAction() == KeyEvent.PRESS) {
 			String lowercaseKey = Character.toString(e.getKey()).toLowerCase();
 			
 			if (lowercaseKey.equals(JPG_KEY)) {
