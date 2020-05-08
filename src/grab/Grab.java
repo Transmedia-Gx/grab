@@ -1,4 +1,4 @@
-package imageexport;
+package grab;
 
 import processing.core.*;
 import processing.event.KeyEvent;
@@ -7,7 +7,7 @@ import processing.pdf.*;
 /**
  * An easy-to-use pdf/jpeg exporter
  */
-public class ImageExport implements PConstants {
+public class Grab implements PConstants {
 	
 	// myParent is a reference to the parent sketch
 	PApplet parent;
@@ -35,7 +35,7 @@ public class ImageExport implements PConstants {
 	 * 
 	 * @param parent the parent PApplet
 	 */
-	public ImageExport(PApplet parent) {
+	public Grab(PApplet parent) {
 		this.parent = parent;
 		showWelcomeMessage();
 		registerForEvents();
