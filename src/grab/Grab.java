@@ -2,7 +2,6 @@ package grab;
 
 import processing.core.*;
 import processing.event.KeyEvent;
-import processing.pdf.*;
 
 /**
  * An easy-to-use pdf/jpeg exporter
