@@ -1,8 +1,8 @@
-## Grab Processing Library
+# Grab Processing Library
 
 Processing library for exporting a JPG or PDF of the current state of the sketch window via input from keyboard or mouse.
 
-### Setup
+## Setup
 
 Just add these 3 lines at the beginning of your Processing Sketch. Then, hit `p` key for exporting a PDF, and `j` key for a JPG.
 
@@ -13,7 +13,7 @@ Grab grab = new Grab(this);
 
 ```
 
-### Keyboard vs Mouse Mode
+## Keyboard vs Mouse Mode
 
 You can choose between keyboard or mouse mode by passing argument to the constructor.
 
@@ -29,6 +29,6 @@ Grab grab = new Grab(this, Mode.KEYBOARD); // You can explicitly pass Mode.KEYBO
 
 Mouse mode (left click for PDF, right click for JPG)
 
-```
+```java
 Grab grab = new Grab(this, Mode.MOUSE); // Pass Mode.MOUSE to use the mouse mode
 ```
