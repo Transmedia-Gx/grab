@@ -4,7 +4,7 @@ import grab.*;
 
 // Activate the Grab library with mouse mode
 // Left click: PDF, right click: JPG
-Grab grab = new Grab(this, MOUSE);
+Grab grab = new Grab(this, Mode.MOUSE);
 
 
 

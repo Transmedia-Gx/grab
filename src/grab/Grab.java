@@ -3,6 +3,7 @@ package grab;
 import processing.core.*;
 import processing.event.KeyEvent;
 
+
 /**
  * An easy-to-use pdf/jpeg exporter
  */
@@ -10,6 +11,9 @@ public class Grab implements PConstants {
 	
 	// myParent is a reference to the parent sketch
 	PApplet parent;
+	
+	// Trigger mode
+	Mode mode;
 	
 	// Version of the library
 	public final static String VERSION = "##library.prettyVersion##";
@@ -29,17 +33,27 @@ public class Grab implements PConstants {
 	PDFExportStatus pdfExportStatus = PDFExportStatus.NONE;
 	
 	/**
-	 * a Constructor, usually called in the setup() method in your sketch to
-	 * initialize and start the Library.
+	 * Default constructor with Keyboard mode
 	 * 
 	 * @param parent the parent PApplet
 	 */
 	public Grab(PApplet parent) {
+		this(parent, Mode.KEYBOARD);
+	}
+
+	/**
+	 * Custom constructor which accepts mode
+	 * 
+	 * @param parent the parent PApplet
+	 * @param mode what triggers the capture (keyboard, mouse, custom)
+	 */
+	public Grab(PApplet parent, Mode mode) {
 		this.parent = parent;
+		this.mode = mode;
 		showWelcomeMessage();
 		registerForEvents();
 	}
-	
+
 	/**
 	 * Helper method to print welcome message
 	 */
