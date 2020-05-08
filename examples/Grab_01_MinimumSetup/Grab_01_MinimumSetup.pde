@@ -1,14 +1,14 @@
-// Tell Processing to use the Image Export and PDF library
-import imageexport.*;
+// Tell Processing to use the PDF and Grab library
 import processing.pdf.*;
+import grab.*;
 
-// Activate the Image Export library
+// Activate the Grab library
 // Hit p key for exporting PDF, and j for jpg
-ImageExport export = new ImageExport(this);
+Grab grab = new Grab(this);
 
 
 
-// Basic setup() and draw()
+// Basic setup() and draw() with mouse interaction
 void setup() {
   size(500, 500);
   pixelDensity(displayDensity());
