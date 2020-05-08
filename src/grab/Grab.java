@@ -1,7 +1,7 @@
 package grab;
 
 import processing.core.*;
-import processing.event.KeyEvent;
+import processing.event.*;
 
 /**
  * An easy-to-use pdf/jpeg exporter
@@ -67,6 +67,7 @@ public class Grab implements PConstants {
 		parent.registerMethod("pre", this);
 		parent.registerMethod("draw", this);
 		parent.registerMethod("keyEvent", this);
+		parent.registerMethod("mouseEvent", this);
 	}
 	
 	/**
@@ -106,6 +107,24 @@ public class Grab implements PConstants {
 			    }
 			}
 		}		
+	}
+	
+	/**
+	 * Event handler for mouse events
+	 */	
+	public void mouseEvent(MouseEvent e)  {
+		if (this.mode == Mode.MOUSE && e.getAction() == MouseEvent.PRESS) {
+			if (parent.mousePressed && parent.mouseButton == LEFT) {
+				System.out.println("[Left Button] is pressed");
+			    if (pdfExportStatus == PDFExportStatus.NONE) {
+			    	pdfExportStatus = PDFExportStatus.WILL_EXPORT;
+			    }
+			} else if (parent.mousePressed && parent.mouseButton == RIGHT) {
+				System.out.println("[Right Button] is pressed");
+				exportJpg();
+			}
+		}
+		
 	}
 
 	/**
