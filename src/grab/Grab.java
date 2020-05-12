@@ -92,6 +92,8 @@ public class Grab implements PConstants {
 	
 	/**
 	 * Event handler for key events
+	 * 
+	 * @param e KeyEvent representing the detail of the event
 	 */	
 	public void keyEvent(KeyEvent e) {
 		if (this.mode == Mode.KEYBOARD && e.getAction() == KeyEvent.PRESS) {
@@ -111,6 +113,8 @@ public class Grab implements PConstants {
 	
 	/**
 	 * Event handler for mouse events
+	 * 
+	 * @param e MouseEvent representing the detail of the event
 	 */	
 	public void mouseEvent(MouseEvent e)  {
 		if (this.mode == Mode.MOUSE && e.getAction() == MouseEvent.PRESS) {
@@ -124,7 +128,6 @@ public class Grab implements PConstants {
 				exportJpg();
 			}
 		}
-		
 	}
 
 	/**
